@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+      <link href="/src/index.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script>
+  const socket = io("http://localhost:3000");
+
+  socket.on('connect', () => {
+    console.log("Connected to server with socket ID:", socket.id);
+  });
+
+  socket.on('candidateAdded', (data) => {
+    console.log("New candidate added:", data);
+  });
+
+  socket.on('vote_updated', () => {
+    console.log("Vote count has been updated");
+  });
+</script>
+
+</html>
